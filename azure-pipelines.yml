@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
+- develop
 
 pool:
   vmImage: ubuntu-latest
@@ -19,3 +19,19 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'learning-subscription(70e4f5db-9420-4ae4-9fbd-2850a62a8cdb)'
+    appType: 'webAppLinux'
+    WebAppName: 'dev-abstract-starter'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    RuntimeStack: 'NODE|18-lts'
+    StartupCommand: 'npm start:prod'
