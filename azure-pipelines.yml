@@ -30,7 +30,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'learning-subscription(70e4f5db-9420-4ae4-9fbd-2850a62a8cdb)'
+    azureSubscription: '$(azureSubscription)'
     appType: 'webAppLinux'
     WebAppName: 'dev-abstract-starter'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
