@@ -34,4 +34,4 @@ steps:
     WebAppName: 'dev-abstract-starter'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     RuntimeStack: 'NODE|18-lts'
-    StartupCommand: 'npm start:prod'
+    StartupCommand: 'npm run start:prod'
