@@ -12,7 +12,7 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '20.x'
+    versionSpec: '18.x'
   displayName: 'Install Node.js'
 
 - script: |
@@ -34,4 +34,4 @@ steps:
     WebAppName: 'dev-abstract-starter'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     RuntimeStack: 'NODE|18-lts'
-    StartupCommand: 'npm run start:prod'
+    StartupCommand: 'node main'
