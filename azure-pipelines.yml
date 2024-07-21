@@ -21,7 +21,7 @@ steps:
   displayName: 'npm install and build'
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
@@ -34,4 +34,4 @@ steps:
     WebAppName: 'dev-abstract-starter'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     RuntimeStack: 'NODE|18-lts'
-    StartupCommand: 'node main'
+    StartupCommand: 'npm run start:prod'
